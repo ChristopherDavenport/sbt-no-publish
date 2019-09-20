@@ -1,0 +1,4 @@
+# Test versions are expected on project
+> skipPublishTest
+> publishArtifactTest
+> publishToTest

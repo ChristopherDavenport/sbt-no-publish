@@ -13,15 +13,11 @@ stages:
   - name: release
     if: ((branch = master AND type = push) OR (tag IS present)) AND NOT fork
 
-scala_version_213: &scala_version_213 "2.13.0"
 scala_version_212: &scala_version_212 "2.12.10"
 
 jobs:
   include:
     # stage="test" if no stage is specified
-    - name: test 2.13
-      scala: *scala_version_213
-      script: sbt ++$TRAVIS_SCALA_VERSION test
     - name: test 2.12
       scala: *scala_version_212
       script: sbt ++$TRAVIS_SCALA_VERSION test

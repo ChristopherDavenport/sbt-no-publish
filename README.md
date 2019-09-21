@@ -4,11 +4,31 @@
 
 ## Quick Start
 
-To use sbt-no-publish in an existing SBT project with Scala 2.11 or a later version, add the following dependencies to your
-`build.sbt` depending on your needs:
+To use sbt-no-publish in an existing SBT project with version 1.0 or greater, add the following dependencies to your
+`plugins.sbt` depending on your needs:
 
-```scala
-libraryDependencies ++= Seq(
-  "io.chrisdavenport" %% "sbt-no-publish" % "<version>"
-)
+```sbt
+addSbtPlugin("io.chrisdavenport" % "sbt-no-publish" % "<version>")
+```
+
+## Example of Use
+
+```sbt
+lazy val root = project.in(file("."))
+  .enablePlugins(NoPublishPlugin) // We disable publishing of the root project
+  .aggregate(core, site)
+
+lazy val core = project.in(file("core"))
+  .settings(commonSettings, releaseSettings)
+  .settings(
+    name := "project-name"
+  )
+
+
+lazy val site = project.in(file("site"))
+  .disablePlugins(MimaPlugin)
+  .enablePlugins(NoPublishPlugin) // We disable publishing of the site
+  .enablePlugins(MicrositesPlugin)
+  .enablePlugins(MdocPlugin)
+  .dependsOn(core)
 ```

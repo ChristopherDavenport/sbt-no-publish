@@ -1,0 +1,11 @@
+name: sbt-no-publish
+baseurl: /sbt-no-publish
+description: Setting No Publication Settings
+highlighter: rouge
+docs: true
+collections:
+  tut:
+    output: true
+version: 0.0.0+2-c43f982f-SNAPSHOT
+org: io.chrisdavenport
+markdown: kramdown
